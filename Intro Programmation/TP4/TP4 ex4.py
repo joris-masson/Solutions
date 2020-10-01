@@ -1,3 +1,7 @@
+"""
+Pas fait la 5 parce que flemme.
+"""
+
 #1---------------------------------------------------
 print("1.")
 n = int(input("Table: "))
