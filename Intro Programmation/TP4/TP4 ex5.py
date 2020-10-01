@@ -1,3 +1,7 @@
+"""
+A priori c'est bon, juste je sais pas quoi faire quand les deux font 21.
+"""
+
 import random
 
 nbDeTour = int(input("Combien de tours voulez-vous faire? "))
