@@ -23,12 +23,12 @@ print(res, "\n")
 
 #3------------------------------------------
 voyelles = ('a', 'e', 'i', 'o', 'u')
-ch = "Bonjour vous"
+ch = "(c'était du sarcasme)"
 nbVoyelles = 0
 nbEspaces = 0
 for char in ch:
     if char in voyelles:
         nbVoyelles += 1
-    if char == " ":
+    elif char == " ":
         nbEspaces += 1
-print("Il y a ", nbVoyelles, "voyelles, et ", nbEspaces, "Espaces")
+print("Il y a ", nbVoyelles, "voyelles, et ", nbEspaces, "Espaces dans", ch)

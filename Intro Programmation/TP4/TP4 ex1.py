@@ -1,7 +1,7 @@
 #1.------------------------------------
 res = 0
 
-for i in range(64):
+for i in range(0,64):
     res+= 2**i
 print(res)
 

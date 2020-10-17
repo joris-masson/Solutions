@@ -27,7 +27,7 @@ mots = ()
 
 for i in range(len(tuples[leTuple])):
     if tuples[leTuple][i][0] == 'c':
-        mots += tuples[leTuple][i],
+        mots += tuples[leTuple][i]
 print(mots, "\n")
 
 #3-------------------------------------------------------------------

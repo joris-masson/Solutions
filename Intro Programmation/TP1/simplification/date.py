@@ -1,5 +1,6 @@
 """
-Bibliothèque visant à simplifier le code vis-à-vis des dates.
+Bibliothèque visant à simplifier le code vis-à-vis des dates. J'ai fait en sorte de marquer les 
+entrées/sorties pour que ce soit plus simple.
 (Créé pour les TP de prog)
 """
 
@@ -35,64 +36,25 @@ def getMonthName(mois):
 
 #Entrées: month -> str ; year -> int
 #Sortie: int
-def getNbDeJours(month, year): 
-    if month == '01': #janvier
+def getNbDeJours(month, year):
+    mois31 = ('01', '03', '05', '07', '08', '10', '12')
+    if month in mois31:
         return 31
-    elif month == '02': #février
+    elif month == '02':
         if (((year%4 == 0) and (year%100 != 0)) or (year%400 == 0)): #année bissextile
             return 29
         else: #non bissextile
             return 28
-    elif month == '03': #mars
-        return 31
-    elif month == '04': #avril
+    else:
         return 30
-    elif month == '05': #mai
-        return 31
-    elif month == '06': #juin
-        return 30
-    elif month == '07': #juillet
-        return 31
-    elif month == '08': #août
-        return 31
-    elif month == '09': #septembre
-        return 30
-    elif month == '10': #octobre
-        return 31
-    elif month == '11': #novembre
-        return 30
-    elif month == '12': #décembre
-        return 31
 
 #Entrée: num -> int
 #Sortie: str
 def convertMonth(num):
-    if num == 1:
-        return '01'
-    elif num == 2:
-        return '02'
-    elif num == 3:
-        return '03'
-    elif num == 4:
-        return '04'
-    elif num == 5:
-        return '05'
-    elif num == 6:
-        return '06'
-    elif num == 7:
-        return '07'
-    elif num == 8:
-        return '08'
-    elif num == 9:
-        return '09'
-    elif num == 10:
-        return '10'
-    elif num == 11:
-        return '11'
-    elif num == 12:
-        return '12'
+    if num < 10:
+        return ('0' + str(num))
     else:
-        return '00'
+        return (str(num))
 
 #Entrée: date -> tuple(jj, mm, aaaa)
 #Sortie: demain -> tuple(jj, mm, aaaa)
@@ -111,5 +73,16 @@ def getNextDay(date):
         year = year + 1
         month = 1
     
-    demain = (day, month, year)
+    demain = (day, convertMonth(month), year)
     return demain
+
+
+#Entrée: date -> tuple(jj, mm, aaaa)
+#Sortie: newFormat -> str
+def changeFormat(date):
+    day = str(date[0])
+    month = str(date[1])
+    year = str(date[2])
+
+    newFormat = day + "/" + month + "/" + year
+    return newFormat
