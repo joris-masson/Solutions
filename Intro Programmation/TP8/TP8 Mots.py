@@ -29,18 +29,15 @@ def motPlusLong(listeMots):
     return listeDeMots[random.randint(0, len(listeDeMots))]
 
 def petiteLongueur(listeMots):
-    plusCourt = 10**9
+    plusCourt = listeMots[0]
     for mot in listeMots:
         if len(mot) < plusCourt:
             plusCourt = len(mot)
     return plusCourt
 
 def plusPetitsMots(listeMots):
-    plusPetit = 10**9
+    plusPetit = petiteLongueur(listeMots)
     listeDeMots = []
-    for mot in listeMots:
-        if len(mot) < plusPetit:
-            plusPetit = len(mot)
     for mot in listeMots:
         if len(mot) == plusPetit:
             listeDeMots.append(mot)
