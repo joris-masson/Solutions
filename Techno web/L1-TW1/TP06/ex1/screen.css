@@ -1,0 +1,55 @@
+body {
+    width: 45em;
+    margin: auto;
+    position: fixed;
+}
+
+aside {
+    background-color: rgba(10, 200, 140, 0.7);
+    position: absolute;
+    width:400px;
+    top:10px;
+    right:-300px;
+}
+
+p {
+    border: 1px solid #555;
+}
+
+h1 {
+    background-color: rgba(100, 0, 200, 0.7);
+    padding: .5em;
+    position:static;
+    top:200px;
+    right:50px;
+    z-index: -1;
+}
+
+h2 {
+    background-color: rgba(200, 0, 100, 0.5);
+}
+
+strong {
+    background-color: rgba(174, 145, 78, 0.7);
+    border: 1px solid goldenrod;
+    margin:30px;
+    width:10em;
+    height:20em;
+    display: inline-block;
+    float:right;
+}
+
+#next-paragraph {
+    clear:right;
+}
+
+/*
+2. l'élément en gras est placé dans un rectangle
+5. l'élément est sort toujours du paragraphe, mais le paragraphe suivant est mis à la suite du block
+et ne se retrouve pas en dessous
+6. le titre passe derrière les autres éléments
+8. ils correspondent à son emplacement initial
+9. il part plus loin sur la droite
+12. tout les éléments sauf le aside sont collés à droite de l'écran, et le reste de la page est inaccessible
+
+*/

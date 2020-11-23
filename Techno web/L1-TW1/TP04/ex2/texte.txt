@@ -1,0 +1,23 @@
+Manipulation des balises HTML et des sélecteurs CSS
+
+Voici venu le moment d’expérimenter les usages des différentes balises HTML et de composer une page de présentation simple, claire, normalisée et évolutive.
+
+Cette page vise notamment à montrer la distinction entre
+
+    les éléments de bloc (div, h1, ul…)
+    les éléments inline (img, a, span…)
+
+Vérifiez que vous avez bien indiqué l'encodage UTF-8 grâce à la balise <meta>. (Attention, pour que la phrase précédente s'affiche correctement, il est nécessaire d'utiliser des entités HTML : cherchez sur le web de quoi il s'agit !)
+
+Auteurs de cette page
+
+Cette page a été réalisée en tandem par :
+
+    Marylin pour le HTML
+    Tom pour les feuilles de style
+
+Remarque : les images HTML se comportent par défaut « comme des mots » ; elles sont posées sur la baseline du texte. On peut changer cet alignement en CSS avec la propriété vertical-align.
+
+Validation
+
+Nous avons pu valider cette page en utilisant le validateur fourni par le W3C : http://validator.w3.org.

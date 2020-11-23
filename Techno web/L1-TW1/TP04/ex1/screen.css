@@ -1,0 +1,65 @@
+main {
+    border-left-width: 20px;
+    border: 4px solid red;
+}
+
+article {
+    border: 2px dotted #666;
+    margin:30px 5px;
+    padding:30px 100px;
+    width:50%;
+    box-sizing:border-box;
+}
+
+h2, p {
+    background-color: gold;
+    border: 1px solid #AAA;
+    margin:5px;
+    padding-left: 5em;
+    font-size:100%;
+}
+
+strong {
+    border: 1px solid black;
+    background-color: tomato;
+    margin:30px;
+}
+
+html {
+    width:800px;
+    padding:3em;
+    border: 15px groove #007;
+    margin:auto;
+}
+
+/*
+2. 
+ça devrait ajouter de l'espacement avec le reste du texte, mais pas en vertical
+Oui
+
+3.
+ça rajoute un petit espacement sur les bords
+
+7.
+Non, l'espacement n'est pas le même, car em dépend de la taille du texte
+
+8.
+La taille du texte est la même partout, le padding espace partout de la même manière du coup
+
+9.
+La bordure du main est agrandie sur la gauche
+Rien(par rapport à la page de base)
+Oui
+
+15.
+La page devient illisible
+
+16.
+Ce qui dépasse des boîtes est caché, ce qui n'est pas vraiment une bonne idée
+On a des ascensseurs maintenant!
+
+17.
+L'élément en question est html
+à part le doctype, je vois pas d'élément parent
+*/
+

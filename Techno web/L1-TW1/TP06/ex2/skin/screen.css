@@ -1,0 +1,36 @@
+body {
+    width:70%;
+}
+
+h1 {
+    padding-top:30px ;
+    padding-bottom: 50px;
+    position: relative;
+    left:200px;
+    font-size: 50px;
+}
+
+.logo {
+    float:left;
+    position:absolute;
+    left:-20px;
+    top: 0px;
+}
+
+article {
+    margin-left: 30%;
+    float:right;
+    border: 3px solid black;
+}
+
+menu {
+    float: left;
+    width:400px;
+    position:absolute;
+    top: 160px;
+    left: -60px;
+}
+
+ul {
+    list-style-type: none;
+}

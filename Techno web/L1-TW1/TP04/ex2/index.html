@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang='fr'>
+    <head>
+        <title>TP04 exercice 2</title>
+        <meta charset="UTF-8" />
+        <meta name="author" content="22008229" />
+        <link rel="stylesheet" media="screen" href="style/screen.css">
+    </head>
+    
+    <body>
+        <header>
+            <h1>Manipulation des balises HTML et des sélecteurs CSS</h1>
+            <p>Voici venu le moment d’expérimenter les usages des différentes balises <abbr title="Hypertext Markup Language">HTML</abbr> et de composer une page de présentation simple, claire, normalisée et évolutive.</p>
+            <hr>
+        </header>
+        <main>
+            <p>Cette page vise notamment à montrer la distinction entre</p>
+            <ul>
+                <li>les éléments de <strong>bloc</strong> (<code>div</code>, <code>h1</code>, <code>ul</code>…)</li>
+                <li>les éléments <strong>inline</strong> (<code>img</code>, <code>a</code>, <code>span</code>…)</li>
+            </ul>
+            <p>Vérifiez que vous avez bien indiqué l'encodage <abbr title="Universal Character Set Transformation Format - 8 bits">UTF-8</abbr> grâce à la balise <code>&lt;meta&gt;</code>. (Attention, pour que la phrase précédente s'affiche correctement, il est nécessaire d'utiliser des <em>entités HTML</em> : cherchez sur le web de quoi il s'agit !)</p>
+            <h2>Auteurs de cette page</h2>
+            <p>Cette page a été réalisée en tandem par :</p>
+            <ol>
+                <li>
+                    <figure>
+                        <p>Marylin<img src="img/marylin.jpg" alt="Marylin">pour le HTML</p>
+                    </figure>        
+                </li>
+                <li>
+                    <figure>
+                        <p>Tom<img src="img/tom.jpg" alt="Tom">pour les feuilles de style</p>
+                    </figure>
+                </li>
+            </ol>
+            <p><strong>Remarque</strong>: les images HTML se comportent par défaut « comme des mots » ; elles sont posées sur la <em>baseline</em> du texte. On peut changer cet alignement en <abbr title="Cascading Style Sheets">CSS</abbr> avec la propriété <code>vertical-align</code>.</p>
+        </main>
+        <footer>
+            <h2>Validation</h2>
+            <p>Nous avons pu valider cette page en utilisant le validateur fourni par le <abbr title="World Wide Web Consortium">W3C</abbr> : <a href="http://validator.w3.org">http://validator.w3.org</a>.</p>
+        </footer>
+    </body>
+</html>

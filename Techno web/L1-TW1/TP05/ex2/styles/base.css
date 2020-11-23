@@ -1,0 +1,60 @@
+
+body {
+	margin: auto;
+	overflow-y: scroll;
+	padding: 1em;
+}
+
+/* Bordure autour de chaque bloc. */
+.page-header,
+.page-footer,
+.menu,
+.main-text,
+.info {
+	border: 1px solid #333;
+}
+
+/* Les couleurs des zones. */
+.page-header { background: tomato; }
+.page-footer { background: orchid; }
+.menu { background: yellowgreen; }
+.main-text { background: orange; }
+.info { background: skyblue; }
+
+/* Stylage de quelques éléments. */
+
+.page-header,
+.page-footer {
+	text-align: center;
+	padding: .5em 2em;
+}
+
+.page-header small {
+	display: block;
+	text-align: right;
+}
+
+.page-header a,
+.menu a {
+	color: white;
+}
+
+.main-text {
+	padding: 1em 2em;
+}
+
+.main-text p {
+	text-align: justify;
+}
+
+.info {
+	font-style: italic;
+	font-size: .8em;
+	padding: 1em;
+}
+
+.page-footer {
+	font-size: xx-small;
+}
+
+

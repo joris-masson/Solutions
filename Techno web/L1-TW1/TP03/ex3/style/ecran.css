@@ -1,0 +1,97 @@
+html { 
+  background-color: #E0E0E0;
+  font-family: Helvetica, sans-serif;
+}
+ 
+body {
+  background-color: #f6fcea;
+  max-width: 60em; 
+  margin:auto;
+}
+
+main {
+	margin: auto 5%;
+}
+
+header {
+    background-color: #b71236;
+    color:white;
+    font-family:"Georgia, sans-serif";
+    font-variant: small-caps;
+    text-align: center;
+    height:100px;
+}
+
+h1 {
+	padding-top:30px;
+	padding-bottom:30px;
+}
+
+h2 {
+    font-style: italic;
+}
+
+figure {
+    margin: auto;
+    width:50%;
+	border:2px solid black;
+	padding-left:2%;
+    padding-right:2%;
+    background-color:white;
+}
+
+figcaption {
+	text-align:center;
+}
+
+.cap1 {
+    position: relative;
+    background-color: white;
+    bottom:-250px;
+    width:96%;
+    margin: auto;
+    opacity: 0.70;
+}
+
+img {
+    width:100%;
+}
+
+section {
+    background-color: #f6fcea;
+}
+
+a {
+	color:gray;
+}
+
+li, ul {
+    list-style-image:url('https://ensweb.users.info.unicaen.fr/TW1/tp/fraises/enonce/strawberry-icon.png');
+}
+
+hr {
+	background-color:#b71236;
+	border:none;
+	height:2px;
+}
+
+blockquote {
+	line-height:1px;
+}
+
+footer {
+	background-color:white;
+	text-align:right;
+    width:96%;
+    margin: auto;
+    padding-top:10px;
+	padding-bottom:10px;
+}
+
+.bordure {
+    background-color:#c7ccbd;
+}
+
+.fraise {
+    color:#b71236;
+}

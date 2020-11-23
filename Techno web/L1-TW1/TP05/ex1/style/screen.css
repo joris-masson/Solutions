@@ -1,0 +1,30 @@
+.conteneur {
+    border: 1px dotted #666;
+    background-color: tomato;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 3fr;
+    justify-content:space-around;
+    justify-items: center;
+    align-items: center;
+    grid-gap: 10px;
+}
+
+.conteneur section {
+    border: 1px solid black;
+    border-radius: 1em;
+    background-color: gold;
+    padding: .6em;
+}
+
+.sauces {
+    justify-self: stretch;
+    align-self: center;
+}
+
+/*
+4. Les sections prennent tout l'espace du conteneur
+5. la deuxième colonne est plus grande
+
+
+*/
