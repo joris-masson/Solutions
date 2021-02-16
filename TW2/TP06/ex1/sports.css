@@ -1,0 +1,32 @@
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+main ol li {
+    font-size: 1.1em;
+    padding: 5px 0;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 0.8em;
+    border-top: 1px solid #80b5d0;
+    text-align: center;
+}
+
+#info {
+    border: 1px solid #555555;
+    background-color: #80b5d0;
+    padding: 15px;
+}
+
+#info h3 {
+    margin-top: 0px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+a {
+    text-decoration: none;
+}

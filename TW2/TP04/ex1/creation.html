@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="author" content="22008229" />
+    <title>Javascript et Document Object Model</title>
+
+    <script src="creation.js"></script>
+</head>
+<body>
+<h1>Javascript et Document Object Model</h1>
+
+<h2>Un exemple de document</h2>
+
+<ul>
+	<li>Item 1</li>
+	<li class="elt-test laclasse">Item 2 avec <a href="http://google.com">un lien</a> vers Google</li>
+	<li>Item 3 avec des <strong>éléments inline</strong> <em>ici</em> et <code>là</code></li>
+</ul>
+
+<div>
+    <p class="elt-test laclasse">Un paragraphe appartenant à 2 classes initialement.</p>
+
+    <figure>
+        <img src="https://ensweb.users.info.unicaen.fr/images/zengarden.jpg" alt="Une image de CSS Zen Garden" width="150" />
+        <figcaption  class="elt-test">Une image avec une légende</figcaption>
+    </figure>
+</div>
+
+<ol id="liste">
+    <li>un item</li>
+    <li>et un deuxième</li>
+</ol>
+
+
+<script>
+// mettre l'appe de la fonction à la fin pour que le DOM soit auparavant formé
+creationDom();
+</script>
+</body>
+</html>

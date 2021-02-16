@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notes de bas de page et lorem ipsum</title>
+  <meta charset="UTF-8" />
+    <meta name="author" content="22008229" />
+    <script src="ex2.js"></script>
+  <style>
+    body {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    p {
+      text-align: justify;
+    }
+
+    span.note {
+      color: #aaaaaa;
+      font-style: italic;
+    }
+
+    span.note::before {
+      content: "[Note : ";
+    }
+
+    span.note::after {
+      content: "]";
+    }
+
+    #notes {
+    	border-top: 1px dotted #777;
+    }
+  </style>
+</head>
+<body>
+<h1>Lorem ipsum</h1>
+<section id="texte">
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pretium venenatis fermentum. Maecenas nec augue mauris. Aliquam quis vulputate quam. Pellentesque et lobortis purus, sit amet viverra neque. <span class="note">Nullam vitae dui id augue porttitor pharetra.</span> Mauris cursus risus ut mattis molestie. Nulla in nunc vitae felis dapibus tincidunt ut sed risus. <span class="note">Sed a vehicula magna.</span> Praesent convallis arcu et leo fringilla, a cursus lacus condimentum. 
+</p>
+<p>
+Vivamus at leo et erat imperdiet rutrum. Sed pretium enim sed laoreet auctor. Suspendisse potenti. Aenean ut turpis quis purus placerat volutpat. Nunc in dolor gravida, venenatis nibh semper, sodales eros. Suspendisse imperdiet sagittis ipsum vel imperdiet. Sed congue turpis eget tincidunt egestas. Donec at nulla lorem. Proin sem massa, tristique quis tortor eu, rutrum ultricies erat. <span class="note">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span> Morbi vestibulum ipsum lacus, eu fringilla felis dapibus vel. Maecenas ultrices dictum massa tincidunt volutpat. Etiam vulputate quis odio sit amet accumsan. Nulla varius tincidunt sagittis.
+</p>
+<p>
+Proin luctus, elit in elementum posuere, dui mauris imperdiet metus, at viverra odio eros ut justo. <span class="note">Quisque et libero fringilla urna vestibulum fringilla.</span> Praesent gravida nunc est, at scelerisque purus ornare nec. Proin ultricies leo eget dictum molestie. Morbi augue dui, lobortis ut odio ut, accumsan consectetur risus. <span class="note">Ut pulvinar vitae urna eu hendrerit.</span> Vestibulum lobortis dignissim urna, id porta quam scelerisque in. Vivamus mollis urna tortor, et hendrerit quam vulputate non. Nullam adipiscing erat magna, at dignissim leo mollis id.
+</p>
+<p>
+Etiam vulputate mauris id sem convallis pellentesque. Aenean sem quam, tempus id tempus non, mollis eget nunc. Ut facilisis vehicula nulla. Pellentesque nec magna sit amet nunc venenatis fringilla. Sed vel tincidunt ligula, in congue nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed egestas fermentum turpis vel interdum.
+</p>
+<p>
+Vestibulum est augue, venenatis sit amet risus vitae, consequat aliquet dolor. Aenean bibendum vel augue vel gravida. Donec metus diam, bibendum et accumsan sagittis, fringilla non lorem. Nam vestibulum eget est sit amet semper. Mauris mauris felis, interdum et nulla in, egestas rhoncus nulla. Curabitur adipiscing tincidunt malesuada. Pellentesque vel pretium lacus. <span class="note">Morbi non lorem orci.</span> Donec cursus venenatis vulputate. Nullam tincidunt felis nunc, sed tempor massa accumsan et. Vivamus sit amet justo eu nisl consequat convallis sed vel ligula. <span class="note">Nunc id pellentesque enim.</span>
+</p>
+<p>
+Aenean at quam quis nisi dignissim convallis. Maecenas sed nibh sit amet elit aliquam vestibulum vel id augue. Proin ultrices eget massa et pulvinar. <span class="note">Nulla pharetra risus at eros elementum tincidunt.</span> Nullam hendrerit tristique sapien sit amet pulvinar. In feugiat vulputate suscipit. Suspendisse euismod id turpis fermentum facilisis. Quisque erat augue, elementum vel tellus ac, egestas tempor ante. Vivamus tellus ante, posuere sed justo ac, sodales ultrices felis.
+</p>
+<p>
+Ut lobortis volutpat egestas. Aliquam sit amet erat vel ipsum tempor varius id nec odio. Aenean dictum velit ac ligula consequat, non scelerisque augue aliquam. Morbi nec augue eget augue porta gravida. Nullam faucibus at nulla vitae accumsan. <span class="note">Aliquam et malesuada dui.</span> Mauris blandit accumsan nisl sit amet congue. Nulla facilisi. Curabitur condimentum, risus ac egestas consequat, sem metus sagittis lectus, quis tristique dui sem id eros.
+</p>
+</section>
+<section id="notes">
+<h3>Notes</h3>
+</section>
+    <script>
+        afficherNotes();
+    </script>
+</body>
+</html>
