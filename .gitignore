@@ -16,3 +16,5 @@
 *.name
 *.pyc
 */.idea/*
+*CMakeLists*
+*/cmake-build-debug/*
