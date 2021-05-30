@@ -1,0 +1,17 @@
+
+*.log
+*.xml
+*.cmake
+*.bin
+*.a
+*.make
+*.iml
+*.cbp
+*.marks
+*.rsp
+*.exe
+*.includecache
+*.check_cache
+*CMake*
+*.name
+*.pyc

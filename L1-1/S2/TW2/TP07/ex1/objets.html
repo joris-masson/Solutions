@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Les objets natifs de Javascript</title>
+        <style>
+            .container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            #timer {
+                border: 2px solid black;
+                background-color: darkred;
+                display: inline-block;
+                height: 30px;
+            }
+        </style>
+    </head>
+
+    <body>
+    <h1>Objets natifs de Javascript</h1>
+    <h2>Décodage/encodage de texte</h2>
+    <h3>Chaque mot est inversé</h3>
+    <div class="container">
+        <div>
+            <textarea id="texte-encode-1" rows="10" cols="50">lI tuaf reuqramer euq egadocne'l te el egadocéd tse tiaf ceva tnemetcaxe el emêm edoc</textarea>
+            <br>
+            <button id="button-encode-1">Encode/décode</button>
+        </div>
+        <div id="texte-resultat-1"></div>
+    </div>
+    <h3>Décalage des touches du clavier</h3>
+    <div class="container">
+        <div>
+            <textarea id="texte-encode-2" rows="10" cols="50">uk dnyr nkkze xibqykrze qib iogrnkli</textarea>
+            <br>
+            <button id="button-encode-2">Encode</button> <button id="button-decode-2">Décode</button>
+        </div>
+        <div id="texte-resultat-2"></div>
+    </div>
+    <h2>Dates</h2>
+    <div>
+        <label>Date de naissance (format jj/mm/aaaa) <input name="date" id="date" value=""></label>
+        <button id="age">Âge et jour de naissance</button>
+    </div>
+    <p id="date-resultat"></p>
+    <h2>Un compteur de temps</h2>
+    <p><span id="timer"></span></p>
+
+    <script>
+        "use strict";
+
+        // variables pour "Lettres inversées"
+        let bouton1 = document.querySelector("#button-encode-1");
+        let zoneTexte1 = document.querySelector("#texte-encode-1");
+        let divRes1 = document.querySelector("#texte-resultat-1");
+
+        let paraRes1 = document.createElement("p");  // créé un élément p pour afficher le résultat1
+        divRes1.appendChild(paraRes1);  // ajoute un paragraphe pour afficher le résultat1
+
+        // constantes pour "Lettres décalées"
+        const DISP_CLAVIER_STR = "azertyuiopqsdfghjklmwxcvbn";  // disposition du clavier sous forme de string
+        const DISP_CLAVIER_ARRAY = DISP_CLAVIER_STR.split("");  // disposition du clavier sous forme de liste
+
+        // variables pour "Lettres décalées"
+        let bouton2Decode = document.querySelector("#button-decode-2");
+        let bouton2Encode = document.querySelector("#button-encode-2");
+        let zoneTexte2 = document.querySelector("#texte-encode-2");
+        let divRes2 = document.querySelector("#texte-resultat-2");
+
+        let paraRes2 = document.createElement("p");  // créé un élément p pour afficher le résultat2
+        divRes2.appendChild(paraRes2);  // ajoute un paragraphe pour afficher le résultat2
+
+        const JOURS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+        const MOIS = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+
+        let maintenant = new Date();
+        let maintenantTraduit = [];
+
+        let dateNaissance1 = [16, 0, 1989];
+
+        let test = [67, 67, 67];
+
+        for (let i = 0; test.length; i++) {
+            test[i] = dateNaissance1[i] - test[i];
+        }
+
+        maintenantTraduit.push(JOURS[maintenant.getDay()]);
+        maintenantTraduit.push(MOIS[maintenant.getMonth()]);
+        maintenantTraduit.push(maintenant.getFullYear());
+        console.log("Nous somme le ", maintenantTraduit[0], maintenant.getDay(), maintenantTraduit[1], maintenantTraduit[2]);
+
+        console.log(Date.now()/1000);  // 2ème point
+
+        // fonction pour inverser une string
+        function invertStr(text) {
+            let textArray = text.split("");  // sépare chaque lettre pour les transformer en un array
+            let newTextArray = [];  // pour stocker le résultat
+            for (let i = textArray.length; i >= 0; i--) {  // dernière lettre -> première lettre
+                newTextArray.push(textArray[i]);  // ajoute la lettre
+            }
+
+            return newTextArray.join("");  // joint tous les éléments de l'array pour former une string et le retourne
+        }
+
+        // fonction pour décaler à droite
+        function decalStr(text, sens) {
+            // TODO Factoriser le code
+            /*
+            pour le paramètre sens:
+            -'D' -> droite
+            -'G' -> gauche
+             */
+            let textArray = text.split("");  // sépare chaque lettre
+            let newTextArray = [];  // pour le résultat
+            let lettre = '';  // stocke la lettre traitée
+            let posLettre = -1;  // stocke sa position dans la constante
+
+            for (let i = 0; i < textArray.length; i++) {  // parcours les lettres du mot
+                lettre = textArray[i]; // lettre traitée
+                posLettre = DISP_CLAVIER_ARRAY.indexOf(lettre);  // sa position
+
+                if (sens === 'D') {
+                    if (lettre === DISP_CLAVIER_ARRAY[DISP_CLAVIER_ARRAY.length-1]) {  // si la lettre est la dernière
+                        newTextArray.push(DISP_CLAVIER_ARRAY[0]);  // met la première
+                    } else {
+                        newTextArray.push(DISP_CLAVIER_ARRAY[posLettre+1]);  // sinon la suivante
+                    }
+                } else {
+                    if (lettre === DISP_CLAVIER_ARRAY[0]) {  // si la lettre est la première
+                        newTextArray.push(DISP_CLAVIER_ARRAY[DISP_CLAVIER_ARRAY.length-1]);  // met la dernière
+                    } else {
+                        newTextArray.push(DISP_CLAVIER_ARRAY[posLettre-1]);  // sinon la précédente
+                    }
+                }
+            }
+
+            return(newTextArray.join(""));  // joint toutes les lettres et le retourne
+        }
+
+        // fonction du bouton1
+        function bouton1Event(event) {
+            let texteZone1 = zoneTexte1.value;  // prend le texte à l'intérieur de la zone d'écriture
+            let listeMots = texteZone1.split(" ");  // sépare chaque mot d'un texte
+            let newTextArray = [];  // permet de stocker le résultat
+
+            for (let i = 0; i < listeMots.length; i++) {  // premier mot -> dernier mot
+                newTextArray.push(invertStr(listeMots[i]));  // ajoute le mot inversé
+            }
+
+            paraRes2.textContent = newTextArray.join(" ");  // joint les mots, et affiche la valeure dans le paragraphe
+        }
+
+        // fonction du bouton2Decode
+        function bouton2DecodeEvent(event) {
+            let texteZone2 = zoneTexte2.value;  // prend le texte à l'intérieur de la zone d'écriture
+            let listeMots = texteZone2.split(" ");  // sépare chaque mot d'un texte
+            let newTextArray = []  // permet de stocker le résultat
+
+            for (let i = 0; i < listeMots.length; i++) {  // premier mot -> dernier mot
+                newTextArray.push(decalStr(listeMots[i], 'D'));  // décale les lettres et l'ajoute
+            }
+
+            paraRes2.textContent = newTextArray.join(" ");  // joint les mots, et affiche la valeure dans le paragraphe
+        }
+
+        function bouton2EncodeEvent(event) {
+            let texteZone2 = zoneTexte2.value;  // prend le texte à l'intérieur de la zone d'écriture
+            let listeMots = texteZone2.split(" ");  // sépare chaque mot d'un texte
+            let newTextArray = []  // permet de stocker le résultat
+
+            for (let i = 0; i < listeMots.length; i++) {  // premier mot -> dernier mot
+                newTextArray.push(decalStr(listeMots[i], 'G'));  // décale les lettres et l'ajoute
+            }
+
+            paraRes2.textContent = newTextArray.join(" ");  // joint les mots, et affiche la valeure dans le paragraphe
+        }
+
+        bouton1.addEventListener('click', bouton1Event);  // ajoute un event au bouton1
+        bouton2Decode.addEventListener('click', bouton2DecodeEvent);  // ajoute un event au bouton2Decode
+        bouton2Encode.addEventListener('click', bouton2EncodeEvent);  //ajoute un event au bouton2Encode
+
+    </script>
+
+    </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Compteur de calories</title>
+        <meta charset="UTF-8" />
+        <meta name ="author" content="22008229">
+        <style>
+            body {
+                max-width: 1000px;
+                margin: auto;
+            }
+
+            #conteneur {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                grid-gap: 20px;
+            }
+
+            #selection {
+                min-width: 500px;
+                border-right: 1px solid #000000;
+            }
+            #selection div {
+                margin-bottom: 10px;
+            }
+        </style>
+
+        <script src="data.js"></script>
+        <script src="compteur.js"></script>
+
+    </head>
+    <body>
+        <h1>Compteur de calories</h1>
+        <div id="conteneur">
+            <form id="selection">
+                <h2>Ingrédient</h2>
+                <div><label>Choisir l'ingrédient à ajouter
+                    <select name="ingredient" id="select-ingredient"></select>
+                </label></div>
+
+                <div><label>Poids <input type="text" name="poids"> en grammes</label></div>
+                <button type="submit">Ajouter</button>
+            </form>
+            <section>
+                <h2>Mon total</h2>
+                <div id="compteur"></div>
+            </section>
+        </div>
+        <script>
+        "use strict";
+
+        let leSelect = document.querySelector("#select-ingredient");  // Prend le select
+        let boutonSubmit = document.querySelector("button");  // prend le bouton
+        boutonSubmit.textContent = "Ceci est un bouton pour ajouter un élément";
+        let leInput = document.querySelector("input");  // prend la zone d'écriture
+        let zoneCompteur = document.querySelector("#compteur");  // prend la zone d'affichage
+
+        let paraTotal = document.createElement("p");  // pour afficher le total
+        zoneCompteur.appendChild(paraTotal);  // ajoute le paragraphe dans la zone d'affichage
+
+        let listeAffichage = document.createElement("ul");  // créer la liste pour afficher toutes les sélections
+        zoneCompteur.appendChild(listeAffichage);  // ajoute cette liste à la zone d'affichage
+
+        let leForm = document.querySelector("form");
+        let boutonReset = document.createElement("button");
+        boutonReset.textContent = "Ceci est un bouton pour remettre à zéro"
+        leForm.appendChild(boutonReset);
+
+        // les totaux
+        let energie = 0;
+        let proteines = 0;
+        let lipides = 0;
+        let glucides = 0;
+        let sucres = 0;
+
+        let ancienneCat = "";  // stocke la dernière catégorie vue
+
+        for (let i = 0; i < data.length; i++) {  // pour tous les objets dans data
+            let cat = data[i].categorie;  // prend la catégorie de l'objet i
+            cat = cat[0].toUpperCase() + cat.slice(1, cat.length);  // met la première lettre en majuscule
+            let nom = data[i].ingredient;  // prend son nom
+            let id = data[i].id;  // prend son ID
+
+            let objCat = document.createElement("optgroup");
+            if (cat !== ancienneCat) {  // si la catégorie est différente
+                objCat.label = cat;  // défini le label de la catégorie
+                ancienneCat = cat;  // change l'ancienne catégorie
+                leSelect.appendChild(objCat);  // ajoute la catégorie au select
+            }
+
+            let aAjouter = document.createElement("option");  // créé une option a rajouter au select
+            aAjouter.value = id;  // change sa valeur à l'ID
+            aAjouter.textContent = nom;  // change son texte
+
+            // faire en sorte d'ajouter à la catégorie, pas au select
+            console.log(objCat, cat, ancienneCat, );
+            leSelect.appendChild(aAjouter);  // ajoute l'option
+        }
+
+        function ajouterIngredient(event) {
+            event.preventDefault();  // empêche le rechargement de la page
+
+            let selecId = leSelect.value;  // prend l'ID
+            let poids = leInput.value;  // prend le poids dans la zone d'écriture
+
+            let aAjouter = document.createElement("li");  // créé un élément pour afficher
+            for (let i = 0; i < data.length; i++) {  // pour tous les éléments de data
+                if (data[i].id === selecId) {  // si l'id de l'élément i est égal à l'id de la sélection
+                    // Ajoute les valeurs pour faire un total(et les calcules aussi accessoirement)
+                    energie += ((data[i].energie)*poids/1000);
+                    proteines += (data[i].proteines*poids/1000);
+                    lipides += (data[i].lipides*poids/1000);
+                    glucides += (data[i].glucides*poids/1000);
+                    sucres += (data[i].sucres*poids/1000);
+
+                    aAjouter.textContent = poids + " grammes de: " + data[i].ingredient + " donne " + ((data[i].energie)*poids/1000).toFixed(2) + "kCal.";
+                    break;  // sors de la boucle si on a trouvé le bon élément
+                }
+            }
+            paraTotal.textContent = "Total: " + energie.toFixed(2) + "kCal dont protéines: " + proteines.toFixed(2) + " lipides: " + lipides.toFixed(2) + " glucides: " + glucides.toFixed(2) + " sucres: " + sucres.toFixed(2);
+            listeAffichage.appendChild(aAjouter);  // ajoute l'élément
+        }
+
+        boutonSubmit.addEventListener('click', ajouterIngredient);  // event lors du clic sur le bouton
+        </script>
+    </body>
+</html>

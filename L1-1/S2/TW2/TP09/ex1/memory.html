@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <title>Memory en Javascript</title>
+        <meta charset="utf-8"/>
+        <meta name ="author" content="22008229">
+        <link rel="stylesheet" type="text/css" href="memory.css">
+        <script type="text/javascript" src="memory.js"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <section class="controles">
+                <h2>Memory</h2>
+            </section>
+            <div id="jeu">
+
+            </div>
+        </div>
+        <script>
+            // initialiser les capteurs d'évènements ici
+            // et écrire les fonctions callback dans memory.js
+            "use strict";
+            //startMemoryGame();
+
+            // définition des constantes
+            let NB_LIGNES = 4;  // Nb de lignes
+            let NB_COLONNES = 6;  // nb de colonnes
+            let NB_CARTES = 32;  //Nb de cartes disponibles
+
+            // définition des variables
+            let titre = document.querySelector("h2");
+            let laSection = document.querySelector(".controles");
+            let divJeu = document.querySelector("#jeu");
+
+            let listeCarteUtil = [];  // stocke la liste des cartes utilisées
+            let listeCarte = [];  // la liste des cartes(les div)
+            let ValeurCartesVisibles = [];  // la liste des valeurs des cartes qui sont retournées
+            let imagesVisibles = [];  // les images retournées
+
+            // variables de score
+            let nbCoups = 0;
+            let nbPaires = 0;
+            let score = 0;
+
+            // création d'élément et placement
+            let paraInfo = document.createElement("p");
+            paraInfo.textContent = "-----";
+            laSection.appendChild(paraInfo);
+
+            let paraScore = document.createElement('p');
+            paraScore.textContent = "Nombres de coups: 0 | Nombre de paires trouvées: 0 | Score: 0";
+            laSection.appendChild(paraScore);
+
+            function getRandomInt(min, max) {  // source: https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            for (let i = 0; i < NB_LIGNES*NB_COLONNES/2; i++) {  // génère les cartes à utiliser
+                let aAjouter = getRandomInt(1, NB_CARTES+1) + '.jpg';
+
+                // ajoute deux fois une même carte, pour faire une paire
+                listeCarteUtil.push(aAjouter);
+                listeCarteUtil.push(aAjouter);
+            }
+
+            function melangeFisherYates() {  // mélange la liste de cartes utilisées
+                let aEchanger;  // pour stocker la carte i a échanger
+                let j;  // pour stocker le numéro de la carte j qui va être échangée
+                for (let i = 0; i < listeCarteUtil.length; i++) {  // parcours les cartes
+                    j = getRandomInt(0, i+1);  // défini le numéro de la carte allant être échangée
+                    aEchanger = listeCarteUtil[i];  // stocke la carte i
+
+                    listeCarteUtil[i] = listeCarteUtil[j];  // la remplace par la carte j
+                    listeCarteUtil[j] = aEchanger;  // et replace la carte i a l'emplacement j
+                }
+            }
+
+            function updateScore() { // Update l'affichage du score
+                paraScore.textContent = "Nombres de coups: " + nbCoups + " | Nombre de paires trouvées: " + nbPaires + " | Score: " + score;
+            }
+
+            function showCards() {  // affiche les cartes face cachée
+                for (let carte = 0; carte < listeCarteUtil.length; carte++) {
+                    let uneCarte = document.createElement("div");  // créé la carte
+                    let imageCarte = document.createElement("img");  // créé l'image
+                    imageCarte.setAttribute("src", "images/js-logo.jpg");  // défini l'image comme étant la face cachée
+                    uneCarte.appendChild(imageCarte);  // ajoute l'image à la carte
+                    uneCarte.setAttribute("data-numero", listeCarteUtil[carte]);  // stocke le numéro de la carte dans un attribut
+                    listeCarte.push(uneCarte);  // ajoute la carte à la liste des cartes
+                    divJeu.appendChild(uneCarte);  // ajoute la carte au jeu
+                }
+                // sert pour bien afficher les cartes selon l'écran
+                let styleJeu = window.getComputedStyle(divJeu);
+                let hauteur = parseInt(styleJeu.getPropertyValue("height"));
+                let largeur = parseInt(styleJeu.getPropertyValue("width"));
+
+                let colonnes = hauteur/NB_COLONNES + "px ";
+                let tailleCol = "";
+                for (let i = 0; i < NB_COLONNES; i++) {
+                    tailleCol += colonnes;
+                }
+
+                let ligne = (hauteur/NB_LIGNES) + "px ";
+                let tailleLigne = "";
+                for (let i = 0; i < NB_LIGNES; i++) {
+                    tailleLigne += ligne;
+                }
+                divJeu.style.gridTemplateColumns = tailleCol;
+                divJeu.style.gridTemplateRows = tailleLigne;
+            }
+
+            function verifEgales() {  // permer de vérifier les cartes retournées
+                if (ValeurCartesVisibles.length >= 2) {  // si 2 cartes sont retournées
+                    nbCoups++;  // ajoute un coup
+                    if (ValeurCartesVisibles[0] === ValeurCartesVisibles[1]) {  // et si les deux cartes sont les mêmes
+
+                        // retire les cartes
+                        imagesVisibles[0].parentNode.removeChild(imagesVisibles[0]);
+                        imagesVisibles[1].parentNode.removeChild(imagesVisibles[1]);
+
+                        nbPaires++;  // ajoute une paire
+                        score += 3;  // ajoute 3 points
+                        paraInfo.textContent = "Ce sont les mêmes!";  // informe
+                    } else {  // sinon
+                        // cache les cartes
+                        imagesVisibles[0].setAttribute("src", "images/js-logo.jpg");
+                        imagesVisibles[1].setAttribute('src', "images/js-logo.jpg");
+
+                        paraInfo.textContent = "Ce ne sont pas les mêmes :(";  // informe
+                        score--;  // diminue le score d'un point
+                    }
+                    // reset les cartes en mémoire
+                    ValeurCartesVisibles = [];
+                    imagesVisibles = [];
+                }
+                updateScore();  // Update l'affichage du score
+            }
+
+            function clicSurCarte(event) {  // permet de retourner une carte
+                let elem = event.currentTarget;  // prend l'élement sur lequel on clique
+                let image = elem.firstChild;  // prend l'image
+                let numCarte = elem.getAttribute("data-numero");  // prend son numéro
+
+                image.setAttribute('src', "images/" + numCarte);  // retourne la carte
+
+                // prend en mémoire la carte retournée
+                ValeurCartesVisibles.push(numCarte);
+                imagesVisibles.push(image);
+
+                setTimeout(verifEgales, 2000);  // vérifie si deux cartes sont retournées
+            }
+
+            function triche() {  // retourne toutes les cartes
+                let lesDivs = divJeu.children;  // prend tous les divs contenant les images
+                paraInfo.textContent = "Petit margoulin ;)";  // insulte
+                for (let i = 0; i < listeCarte.length; i++) {
+                    let image = lesDivs[i].firstChild;  // prend l'image
+                    let numCarte = lesDivs[i].getAttribute("data-numero");  // prend son numéro
+                    image.setAttribute('src', "images/" + numCarte);  // la retourne
+                }
+            }
+
+            function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            function changeCouleur() {
+                document.documentElement.style.backgroundColor = getRandomColor();
+                document.documentElement.style.color = getRandomColor();
+                setTimeout(changeCouleur, 100);
+            }
+
+            function resetALL(event) {
+                console.log("Et pouf, y a plus rien (non)");
+                document.documentElement.innerHTML = ':)';
+                document.documentElement.style.textAlign = "center";
+                document.documentElement.style.fontSize = "450px";
+                document.documentElement.style.backgroundColor = "red";
+                document.documentElement.style.fontFamily = "Comic Sans MS";
+                changeCouleur();
+            }
+
+            melangeFisherYates();  // mélange les cartes
+            showCards();  // affiche les cartes face cachée
+
+            for (let carte = 0; carte < listeCarte.length; carte++) {  // ajoute un event sur chaque carte
+                listeCarte[carte].addEventListener('click', clicSurCarte)
+            }
+
+            titre.addEventListener('click', triche);  // event pour la triche
+            paraScore.addEventListener('click', resetALL);  // no comment
+        </script>
+    </body>
+</html>

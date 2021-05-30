@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: calc(100vh - 20px);
+    margin: 10px;
+}
+
+section {
+    padding: 10px;
+}
+
+#jeu {
+    display: grid;
+    height: 100%;
+    width: 100%;
+
+}
+
+#jeu > div {
+    padding: 5px;
+}
+
+#jeu > div > img {
+    max-width: 100%;
+    display: block;
+}
