@@ -20,10 +20,6 @@ public class PrecedenceConstraint {
 	public boolean isSatisfied(int date1, int date2) {
 		int firstActivityDuration = this.firstActivity.getDuration();
 
-		if (firstActivityDuration + date1 <= date2) {
-			return true;
-		} else {
-			return false;
-		}
+		return firstActivityDuration + date1 <= date2;
 	}
 }
