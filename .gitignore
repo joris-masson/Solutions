@@ -18,3 +18,5 @@
 */.idea/*
 *CMakeLists*
 */cmake-build-debug/*
+*.pdf
+
